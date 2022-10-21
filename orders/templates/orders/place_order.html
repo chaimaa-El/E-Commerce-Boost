@@ -1,0 +1,74 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %} Place
+Order {% endblock title %} 
+{% block additional_styles %}
+<style>
+   .header {
+          background: white;
+          }
+</style>
+{% endblock %} 
+{%block content%}
+</div>
+</div>
+<div class="small-container">
+  
+  <div class="crow">
+    <div class="row my-3">
+      
+        <div class="card">
+          <h3 class="card-header mb-0">Order Summary</h3>
+          <div class="card-body">
+            {% for i in summary %}
+            <table>
+              
+             
+              <tr>
+                <td>
+                  <div class="cart-info">
+                    
+                      <p>{{i.quantity}} x {{i.product.name}}</p>
+                      
+                  </div>
+                  
+                </td>
+                
+                <td class="cprice">{{i.total}} DH</td>
+              </tr>
+              
+            </table>
+            
+            {% empty %}
+            <h5 class="card-text font-weight-light" style="text-align: center;">No items in cart.</h5>
+            {% endfor %}
+            <div class="total-price">
+
+              <table>
+                <tr>
+                  <td>Total</td>
+                  <td>{{cart.get_total_price}} DH</td>
+                </tr>
+              </table>
+          
+            </div>
+          </div>
+        </div>
+      
+    </div>
+    <div class="col-md-6 col-12">
+      <div class="card card-body">
+        <h3 class="card-header mb-0" style="text-align: center;">Shipping Details</h3>
+        <form method="POST" style="flex-direction: column; border: 0; border-top: 1px solid rgba(0,0,0,.125);
+                                  padding-left: 0;" >
+          {% csrf_token %} {{form|crispy}} {% if cart.empty %}
+          <div class="alert alert-danger my-2">Your cart is empty.</div>
+          <button disabled class="btn btn-success">Place Order</button>
+          {% else %}
+          <button type="submit" class="btn btn-success" style="margin-bottom: 10px; margin-left: 0; border: 0;">Place Order</button>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>  
+
+</div>
+{% endblock content %}

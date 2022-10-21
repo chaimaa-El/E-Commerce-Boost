@@ -1,0 +1,16 @@
+{% load thumbnail %}
+<h2 class="title ctitle">Similar Products</h2>
+<div class="crow">
+{% for product in products %}
+    <div class="ccol-4">
+      <img src="{% thumbnail product.image 0x1080 %}">
+      <a href="{% url 'store:product_details' product.slug %}" class="proname"><h4>{{product.name}}</h4></a>
+      <p>{{product.price}} DH</p>
+      <p>{{product.description|truncatewords:23 }}</p>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center">
+      <h3 class="font-weight-light my-4 py-4">No similar products found.</h3>
+    </div>
+    {% endfor %}
+</div>

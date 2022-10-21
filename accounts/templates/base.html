@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock title %}</title>
+    {% block additional_styles %}
+      <style>
+        .header {
+          background: radial-gradient(#fff,#ffd6d6);
+        }
+      </style>
+    {% endblock %}
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    /> 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    
+    <!-- Navbar -->
+    <div class="header">
+      <div class="container">
+        <div class="navbar">
+          <div class="logo">
+            <a href="{% url 'landingPage:landingPage' %}"><img src="{% static 'images/logo.png' %}" width="150px" ></a>
+          </div>
+          <nav>
+            <ul id="MenuItems">
+              <li><a class="hov" href="{% url 'landingPage:landingPage' %}">Home</a></li>
+              <li><a class="hov" href="{% url 'store:product_list' %}">Store</a></li>
+              <li><a class="hov" href="{% url 'store:categories_list' %}">Categories</a></li>
+              <!-- First Tier Drop Down -->
+              <!-- <li> 
+                
+                <label for="drop-1" class="toggle">Service +</label>
+                <a href="#">Service</a>
+                <input type="checkbox" id="drop-1"/>
+                <ul>
+                  <li><a href="#">Service 1</a></li>
+                  <li><a href="#">Service 2</a></li>
+                  <li><a href="#">Service 3</a></li>
+                </ul>
+              </li> -->
+              <!-- <li><form action="{% url 'store:product_list' %}" class="inline-form mr-md-2 ml-auto">
+                <div class="search-box">
+                  <button type="submit" class="btn-search"><i class="fa fa-search"></i></button>
+                  <input required type="text" name="name" 
+                  placeholder="Type to Search..." class="form-control input-search">
+                </div>
+              </form></li> -->
+
+
+            {% if user.is_authenticated %}
+            <li>
+              <a class="hov" href="{% url 'orders:my' %}">
+                <i class="fa fa-truck fa-lg mr-1"></i> My Orders
+              </a>
+            </li>
+              <li><a class="hov" href="{% url 'cart:cart_details' %}" >
+                <i class="fa fa-shopping-cart fa-lg"></i>
+                <span class="badge badge-secondary">
+                  {% if cart %} {{cart|length}} {% else %} 0 {% endif%}
+                </span>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="hov"
+                href="#"
+                
+                data-toggle="dropdown"
+              >
+                {{request.user}}  &#9660
+                <!-- <img class="arrow" src="https://img.icons8.com/external-those-icons-fill-those-icons/100/000000/external-down-arrows-those-icons-fill-those-icons-6.png"/>              </a> -->
+              <div class="dropdown-menu">
+                <a href="{% url 'profile'%}" class="dropdown-item">Profile</a>
+                <a href="{% url 'password_change'%}" class="dropdown-item">
+                  Change Password
+                </a>
+                <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+              </div>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="hov" href="{% url 'login' %}">
+                <i class="fa fa-sign-in fa-lg"></i> Login
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="hov" href="{% url 'register' %}">
+                <i class="fa fa-user-plus fa-lg"></i> Register
+              </a>
+            </li>
+            {% endif %}
+            </ul>
+
+          </nav>
+          <img src="{% static 'images/menu.png' %}" class="menu-icon" onclick="menutoggle()">
+        </div>
+      </div>
+      <div class="container">
+        {% if messages %}
+        <div class="alert alert-success my-2">
+          {% for message in messages %} {{message}} {% endfor %}
+        </div>
+        {% endif %} {% block content %} {% endblock content %}
+    
+    
+  
+    <!-- Sponsors -->
+    <div class="brands">
+      <div class="small-container">
+        <div class="crow">
+          <div class="ccol-5">
+            <img src="{% static 'images/logo-coca-cola.png' %}">
+          </div>
+          <div class="ccol-5">
+            <img src="{% static 'images/logo-oppo.png' %}">
+          </div>
+          <div class="ccol-5">
+            <img src="{% static 'images/logo-godrej.png' %}">
+          </div>
+          <div class="ccol-5">
+            <img src="{% static 'images/logo-paypal.png' %}">
+          </div>
+          <div class="ccol-5">
+            <img src="{% static 'images/logo-philips.png' %}">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container">
+        <div class="crow">
+          <div class="fcol-1">
+            <h3>Download Our App</h3>
+            <p>Download App for Android and ios mobile phone.</p>
+            <div class="app-logo">
+              <img src="{% static 'images/play-store.png' %}">
+              <img src="{% static 'images/app-store.png' %}">
+            </div>
+          </div>
+          <div class="fcol-2">
+            <img src="{% static 'images/logo-white.png' %}">
+            <p>Our purpose is to make life easier for people and give them simple access to all the available
+              machines in the market.
+            </p>
+          </div>
+          <div class="fcol-3">
+            <h3>Useful Links</h3>
+            <ul>
+              <li>About</li>
+              <li>Blog</li>
+              <li>Contact Us</li>
+              <li>Other</li>
+            </ul>
+          </div>
+          <div class="fcol-4">
+            <h3>Follow us</h3>
+            <ul>
+              <li>Facebook</li>
+              <li>Twitter</li>
+              <li>Instagram</li>
+              <li>Youtube</li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2021 - ElectoStore SC</p>
+      </div>
+    </div>
+
+  <!---------js code---------->
+  <script>
+    var MenuItems = document.getElementById("MenuItems");
+
+    MenuItems.style.maxHeight = "0px";
+    
+    function menutoggle(){
+      if(MenuItems.style.maxHeight == "0px")
+        {
+          MenuItems.style.maxHeight = "22rem";
+        }
+      else
+        {
+          MenuItems.style.maxHeight = "0px";
+        }
+    }
+  </script>
+
+  </body>
+</html>

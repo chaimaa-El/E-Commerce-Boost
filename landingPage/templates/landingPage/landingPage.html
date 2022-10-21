@@ -1,0 +1,71 @@
+{%extends 'base.html'%} 
+{%load thumbnail%} {%load store_tags%} {% load static %} {% block title %}
+{{product.name}} {% endblock title %} 
+
+
+
+{%block content%}
+
+<div class="crow">
+  <div class="col">
+    <h1>Give Your Beloved House A Refresh</h1>
+    <p>On our online store, you can find the newest and most exclusive household appliances that 
+      you need with appropriate prices.</p>
+    <a href="{% url 'store:product_list' %}" class="exp">Explore Now &#8594;</a>
+  </div>
+  <div class="col">
+    <img src="{% static 'images/home.jpg' %}" alt="">
+  </div>
+</div>
+</div>   
+
+</div>  
+<!-- Categories -->
+<div class="categories">
+    <div class="small-container">
+      <h2 class="title">Categories</h2>
+        <div class="crow">
+            <div class="ccol-3">
+                <a href="{% url 'store:categories_list' %}" class="ccat"><h4>Electromenager</h4></a>
+                <img src="{% static 'images/category1.jpg' %}" alt="">
+            </div>
+            <div class="ccol-3">
+                <a href="{% url 'store:categories_list' %}" class="ccat"><h4>Mobile</h4></a>
+                <img src="{% static 'images/category2.png' %}" alt="">
+            </div>
+            <div class="ccol-3">
+                <a href="{% url 'store:categories_list' %}" class="ccat"><h4>Television</h4></a>
+                <img src="{% static 'images/category3.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+    
+</div>
+<!-- Products -->
+<div class="small-container">
+  <h2 class="title">Featured Products</h2>
+  <div class="crow">
+    <div class="ccol-4">
+      <img src="{% static 'images/tcl.jpg' %}">
+      <a href="{% url 'store:product_list' %}" class="ccat"><h4>TCL 65C815</h4></a>
+      <p>11999.0 DH</p>
+    </div>
+    <div class="ccol-4">
+      <img src="{% static 'images/bosch.jpg' %}">
+      <a href="{% url 'store:product_list' %}" class="ccat"><h4>BOSCH SMS44DI00T</h4></a>
+      <p>4699.0 DH</p>
+    </div>
+    <div class="ccol-4">
+      <img src="{% static 'images/whirl.jpg' %}">
+      <a href="{% url 'store:product_list' %}" class="ccat"><h4>WHIRLPOOL KN8V1</h4></a>
+      <p>4999.0 DH</p>
+    </div>
+    <div class="ccol-4">
+      <img src="{% static 'images/12pro_max.jpg' %}">
+      <a href="{% url 'store:product_list' %}" class="ccat"><h4>IPHONE 12 PRO MAX</h4></a>
+      <p>16999.0 DH</p>
+    </div>
+  </div>
+</div>
+
+{% endblock content%}

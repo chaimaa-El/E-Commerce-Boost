@@ -1,0 +1,83 @@
+{% extends 'base.html' %} {% block title %}Your Orders {% endblock title %}
+{% block additional_styles %}
+<style>
+   .header {
+          background: white;
+          }
+</style>
+{% endblock %} 
+{%block content%}
+</div>
+</div>
+<h2 class="title otitle">Your Orders</h2>
+<div class="small-container">
+  <div class="crow">
+    <ul class="list-group my-3">
+      {% for order in orders %}
+      <li class="list-group-item">
+        <h5 class="mb-2">
+          {% if order.status == 'Delivered' %}
+          <span class="badge badge-success font-weight-light">
+            {{order.status}}
+          </span>
+          {% else %}
+          <span class="badge badge-info font-weight-light">{{order.status}}</span>
+          {% endif %}
+        </h5>
+        <h3>
+          <a href="{% url 'orders:details' order.id %}" class="proname">Order id - {{order.id}}</a>
+        </h3>
+        <h5>{{order.total_price}} DH</h5>
+        <p class="mb-0">{{order.total_items}} Items</p>
+        <p class="mb-0">
+          Delivery Address - {{order.address}}, {{order.city}}, {{order.pin_code}}
+        </p>
+        <p class="mb-0">Placed {{order.created|timesince}} ago.</p>
+      </li>
+      {% empty %}
+      <li class="list-group-item text-center border-white">
+        <h3 class="font-weight-light">You haven't placed any orders.</h3>
+        <a href="{% url 'store:product_list' %}" class="btn btn-secondary">
+          Continue Shopping
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+  <div class="crow">
+    {% with page_obj as page %}
+    <div class="mt-2">
+      <p class="my-2">
+        Page {{page.number}} of {{page.paginator.num_pages}}
+      </p>
+    
+      <ul class="pagination">
+        {% if page.has_previous %}
+        <li class="page-item">
+          <a href="?page={{page.previous_page_number}}" class="page-link">
+            Back
+          </a>
+        </li>
+        {% endif %}
+        <li class="page-item active">
+          <a class="page-link">{{ page.number }}</a>
+        </li>
+        {% if page.has_next %}
+        <li class="page-item">
+          <a href="?page={{page.next_page_number}}" class="page-link">
+            Next
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+      
+    
+  {% endwith %} 
+  </div>
+</div>
+
+
+
+{% endblock content %}

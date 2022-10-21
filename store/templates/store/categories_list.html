@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %}{% block title %} Categories {% endblock title %}
+{% block additional_styles %}
+<style>
+   .header {
+          background: white;
+          }
+</style>
+{% endblock %} 
+{%block content %}
+</div>
+</div>
+
+<div class="categories">
+  <div class="small-container">
+    <h2 class="title">Categories</h2>
+    <div class="crow">
+      {% for c in categories %}
+          <div class="ccol-3">
+            {% if 3 == forloop.counter %}
+            <img src="{% static 'images/category3.png' %}" alt="">
+            {% elif 2 == forloop.counter %}
+            <img src="{% static 'images/category2.png' %}" alt="">
+            {% else %}
+            <img src="{% static 'images/category1.jpg' %}" alt="">
+            {% endif %}
+            <a href="{{ c.get_absolute_path }}" class="ccat"><h4>{{c.name}}</h4></a>
+            <div class="card-footer">
+              {{c.num_products}} Product{{c.num_products|pluralize}}
+            </div>
+          </div>
+      
+      {% endfor %}
+    </div>
+  </div>
+  
+</div>
+
+
+
+{% endblock content %}

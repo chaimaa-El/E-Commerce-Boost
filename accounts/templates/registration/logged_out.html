@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block title %} Logged Out {% endblock title %}
+{% block additional_styles %}
+<style>
+   .header {
+          background: white;
+          }
+</style>
+{% endblock %}
+{%block content %}
+</div>
+</div>
+<div class="small-container">
+  <h1 class="display-4 my-2">Logged out</h1>
+  <hr />
+  <div class="crow">
+    <p>
+      You have successfully logged out of your account you can login again
+      <a href="{% url 'login' %}" class="proname"><b>here</b></a>.
+    </p>
+      <br>
+      <a href="{% url 'landingPage:landingPage' %}" class="exp" style=" width: auto; margin-right: 400px; margin-left: 400px;">Home</a>
+    
+  </div>
+  
+</div>
+
+{% endblock content %}

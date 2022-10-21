@@ -1,0 +1,95 @@
+{% extends 'base.html' %} {%load thumbnail%} {% block title %} Cart {% endblock title %}
+{% block additional_styles %}
+<style>
+   .header {
+          background: white;
+          }
+</style>
+{% endblock %} 
+{%block content%}
+</div>
+</div>
+
+  <h2 class="title">Cart</h2>
+  
+<div class="small-container cart-page">
+  {% if total %}
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+    </tr>
+    {% for i in cart_items %}
+    <tr>
+      <td>
+        <div class="cart-info">
+          <img src="{% thumbnail i.product.image 0x1080 %}">
+          <div>
+            <p>{{i.product.name}}</p>
+            <small>Price: {{i.product.price}} DH</small>
+            <br>
+            <a
+              href="{% url 'cart:remove' i.product.id %}"
+              class="btn btn-danger btn-sm"
+            >
+              <i class="fa fa-times mr-1"></i> Remove
+            </a>
+          </div>
+        </div>
+        
+      </td>
+      <td>
+        <form
+        action="{% url 'cart:add' %}"
+        class="form-inline"
+        method="POST"
+        >
+        {% csrf_token %}
+        {{i.form.product_id}}
+          <div >
+            {{i.form.quantity}}
+              
+              <button class="btn btn-primary btn-sm upd" type="submit">
+                <i class="fa fa-shopping-cart mr-1"></i>Update
+              </button>
+           
+          </div>
+        </form>
+      </td>
+      <td class="cprice">{{i.total}} DH</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <div class="total-price">
+
+    <table>
+      <tr>
+        <td>Total</td>
+        <td>{{total}} DH</td>
+      </tr>
+    </table>
+
+  </div>
+  <div class="text-center">
+    <a href="{% url 'cart:clear' %}" class="btn btn-danger">Clear Cart</a>
+    <a href="{% url 'orders:place' %}" class="btn btn-success">Checkout</a>
+  </div>
+  {% else %}
+  <div class="text-center">
+    <h3 class="font-weight-light">Cart is empty</h3>
+    <a href="{% url 'store:product_list' %}" class="btn btn-secondary">
+      Go to Store
+    </a>
+  </div>
+  {% endif %}
+
+</div>
+
+
+
+<script>
+  let inputs = document.querySelectorAll("input.form-control");
+  inputs.forEach((i) => i.classList.add("form-control-sm"));
+</script>
+{% endblock content %}
