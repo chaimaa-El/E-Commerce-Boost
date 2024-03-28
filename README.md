@@ -1,43 +1,37 @@
-# Django e-commerce
+# E-Commerce Boost
 
-An e-commerce app made using django 3, sqlite and bootstrap 4.
-This app also uses several other packages like -
+## Overview
+E-Commerce Boost is an e-commerce app made using Django 3, SQLite, and Bootstrap 4. It provides a platform for managing products, orders, and customer interactions. This app is equipped with features such as user registration, cart management, order placement, and invoice generation.
 
-- django-crispy-forms
-- django-filter
-- pillow
-- easy-thumbnails
-- dj-database-url
+## Features
+- User-friendly interface for browsing and purchasing electronic products.
+- Admin dashboard for managing products and orders.
+- User registration and authentication system.
+- Cart functionality for adding and removing items.
+- Dynamic product catalog with search and filtering options
+- Secure payment processing for order transactions.
+- Invoice generation for completed orders.
 
-In this app admin can manage products and orders and a customer can simply register, add items to cart and then place an order, customer can also generate an invoice of his order.
+## Technologies Used
+- Django 3 framework for backend development.
+- SQLite database for storing product, order, and user information.
+- Bootstrap 4 framework for responsive design.
+- Several other packages including django-crispy-forms, django-filter, pillow, easy-thumbnails, and dj-database-url.
 
-To run this app on your local machine you can simply follow the instructions given below.
+## Installation
+1. Clone the repository: `git clone https://github.com/chaimaa-El/E-Commerce-Boost.git`
+2. Navigate to the project directory: `cd e-commerce-boost`
+3. Install dependencies: `pip install -r requirements.txt`
+4. Create a superuser: `python manage.py createsuperuser` and follow the prompts to set up your admin credentials.
+5. Run migrations: `python manage.py migrate`
+6. Start the development server: `python manage.py runserver`
 
-To install dependencies you can run
+## Usage
+1. Visit the website at [http://localhost:8000/store](http://localhost:8000/store) in your browser to access the customer module.
+2. Visit [http://localhost:8000/admin](http://localhost:8000/admin) for the admin module and log in using the superuser credentials.
+3. Explore the app functionalities including product management, order processing, and user interactions.
 
-```shell
-pip install -r requirements.txt
-```
 
-To create superuser run this command:
-
-```shell
-python manage.py createsuperuser
-```
-
-and then enter your username, email and password.
-
-To make migrations :
-
-```shell
-python manage.py migrate
-```
-
-To run server :
-
-```shell
-python manage.py runserver
-```
 
 After starting server go to your web browser and visit http://localhost:8000/store and for admin module visit http://localhost:8000/admin and login using superuser credentials.
 # ecommerce_django
