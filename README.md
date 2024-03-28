@@ -31,7 +31,3 @@ E-Commerce Boost is an e-commerce app made using Django 3, SQLite, and Bootstrap
 2. Visit [http://localhost:8000/admin](http://localhost:8000/admin) for the admin module and log in using the superuser credentials.
 3. Explore the app functionalities including product management, order processing, and user interactions.
 
-
-
-After starting server go to your web browser and visit http://localhost:8000/store and for admin module visit http://localhost:8000/admin and login using superuser credentials.
-
